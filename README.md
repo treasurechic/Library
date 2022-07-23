@@ -2,7 +2,7 @@
 
 This is a mini app to add books, sort, reset and filter!
 
-# Getting Started with The Library Project
+# Getting Started with React Native Project
 
 This project was bootstrapped with [Expo Init](https://reactnative.dev/docs/environment-setup).
 
