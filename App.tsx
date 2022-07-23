@@ -17,7 +17,7 @@ const renderItem = (item: any) => {
   const { book, genre } = item.item;
   return (
     <View>
-      <Text style={styles.text} testID="books-list">
+      <Text style={styles.text}>
         {"->"}
         {"  "} {book} - {genre}
       </Text>
@@ -68,16 +68,18 @@ export default function App() {
     }
   }, [filterValue]);
 
-  const onPress = () => {
+  const handleAddBook = () => {
     setBookList((prevState) => [...prevState, formData]);
     setBookListKept((prevState) => [...prevState, formData]);
     setFormData(initialValues);
+    setFilterValue("");
   };
 
   const reset = () => {
     setFormData(initialValues);
     setBookList([]);
     setBookListKept([]);
+    setFilterValue("");
   };
 
   const sortList = () => {
@@ -99,7 +101,6 @@ export default function App() {
               <TextInput
                 value={book}
                 onChangeText={(value) => onChange(value, "book")}
-                testID="new-book-title"
                 style={styles.input}
                 selectionColor={"white"}
                 placeholder="Enter Book Name"
@@ -108,16 +109,14 @@ export default function App() {
               <TextInput
                 value={genre}
                 onChangeText={(value) => onChange(value, "genre")}
-                testID="new-book-genre"
                 style={styles.input}
                 selectionColor={"white"}
                 placeholderTextColor={plain}
                 placeholder="Enter Book Genre"
               />
               <TouchableOpacity
-                testID="add-item"
                 disabled={disabled}
-                onPress={onPress}
+                onPress={handleAddBook}
                 style={styles.button}
               >
                 <Text style={styles.btnText}>Add Book</Text>
@@ -126,7 +125,6 @@ export default function App() {
                 <>
                   <View style={styles.btnWrapper}>
                     <TouchableOpacity
-                      testID="sort-direction"
                       onPress={sortList}
                       style={{ ...styles.btn_sm, marginHorizontal: 14 }}
                     >
@@ -135,7 +133,6 @@ export default function App() {
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                      testID="clear-list"
                       onPress={reset}
                       style={styles.btn_sm}
                     >
@@ -145,7 +142,6 @@ export default function App() {
                   <TextInput
                     value={filterValue}
                     onChangeText={(value) => setFilterValue(value)}
-                    testID="filter-input"
                     style={styles.input}
                     selectionColor={"white"}
                     placeholderTextColor={plain}
